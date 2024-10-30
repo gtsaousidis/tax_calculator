@@ -31,7 +31,6 @@ def main():
     try:
         # Input the annual net income
         annual_net = float(input("Enter your annual net income: "))
-        tax = calculate_tax(annual_net)
         
         # Select the health insurance category
         print("\nSelect your category for health insurance:")
@@ -42,14 +41,21 @@ def main():
             print("Invalid category. Please enter a number between 1 and 7.")
             return
         
-        # Calculate the health insurance and display results
+        # Calculate the health insurance
         health_insurance = calculate_health_insurance(category)
-        total_deductions = tax + health_insurance
-        final_income = annual_net - total_deductions
         
-        print(f"\nThe annual tax for an income of {annual_net} is: {tax:.2f}")
-        print(f"The annual health insurance cost for category {category} is: {health_insurance:.2f}")
-        print(f"\nTotal deductions (tax + insurance): {total_deductions:.2f}")
+        # Deduct health insurance from annual net income
+        income_after_insurance = annual_net - health_insurance
+        
+        # Calculate the tax on the remaining income
+        tax = calculate_tax(income_after_insurance)
+        
+        # Calculate the final net income after all deductions
+        final_income = income_after_insurance - tax
+        
+        print(f"\nThe annual health insurance cost for category {category} is: {health_insurance:.2f}")
+        print(f"The annual tax for the remaining income of {income_after_insurance} is: {tax:.2f}")
+        print(f"\nTotal deductions (tax + insurance): {tax + health_insurance:.2f}")
         print(f"Final net income after deductions: {final_income:.2f}")
 
     except ValueError:
