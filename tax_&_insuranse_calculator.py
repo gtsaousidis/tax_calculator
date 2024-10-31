@@ -27,10 +27,14 @@ def calculate_health_insurance(category):
     monthly_cost = monthly_costs.get(category, 0)
     return monthly_cost * 12
 
+def taxable_income(annual_net, category, yearlyExpenses):
+    return annual_net - calculate_health_insurance(category) - yearlyExpenses
+
 def main():
     try:
         # Input the annual net income
         annual_net = float(input("Enter your annual net income: "))
+        yearlyExpenses = float(input("Enter your yearly expenses: "))
         
         # Select the health insurance category
         print("\nSelect your category for health insurance:")
@@ -44,8 +48,8 @@ def main():
         # Calculate the health insurance
         health_insurance = calculate_health_insurance(category)
         
-        # Deduct health insurance from annual net income
-        income_after_insurance = annual_net - health_insurance
+        # Calculate the taxable income
+        income_after_insurance = taxable_income(annual_net, category, yearlyExpenses)
         
         # Calculate the tax on the remaining income
         tax = calculate_tax(income_after_insurance)
