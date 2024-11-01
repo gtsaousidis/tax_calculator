@@ -16,12 +16,12 @@ def calculate_tax(annual_net):
 
 def calculate_health_insurance(category):
     monthly_costs = {
-        1: 230.25,
-        2: 276.31,
-        3: 331.13,
-        4: 398.02,
-        5: 476.96,
-        6: 620.60,
+        1: 238.22,
+        2: 285.87,
+        3: 342.59,
+        4: 411.78,
+        5: 493.46,
+        6: 642.06,
         7: 138.15
     }
     monthly_cost = monthly_costs.get(category, 0)
